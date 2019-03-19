@@ -48,13 +48,39 @@ class HeaderKu extends Component{
                                         </div>
                                     </div> 
                                     </NavItem>
-                                    
+                                    <NavItem>
+                                        <Link to="/cart"><NavLink className="btn btn-default border-primary" style={{fontSize:"14px"}}><i class="fas fa-shopping-cart"></i> Cart </NavLink></Link>
+                                    </NavItem>
                                     <NavItem>
                                         <Link to="/register"><NavLink className="btn btn-default border-secondary mr-1" style={{fontSize:"14px"}}><i className="fas fa-user-plus" /> Daftar</NavLink></Link>
                                     </NavItem>
                                     <NavItem>
                                         <Link to="/login"><NavLink className="btn btn-default border-primary" style={{fontSize:"14px"}}><i className="fas fa-sign-in-alt" /> Masuk </NavLink></Link>
                                     </NavItem>
+                                    <UncontrolledDropdown nav inNavbar>
+                                        <DropdownToggle nav caret>
+                                        Menu
+                                        </DropdownToggle>
+                                        <DropdownMenu right>
+                                        {
+                                            this.props.role === 'admin' 
+                                            ? 
+                                           <Link to='/manage'> 
+                                                <DropdownItem>
+                                                    Manage Product
+                                                </DropdownItem> 
+                                            </Link>
+                                            :
+                                            null
+                                        }
+                                        <DropdownItem>
+                                            <Link to="/history">
+                                            Histori Transaksi
+                                            </Link>
+                                        </DropdownItem>
+                                        
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
                                 </Nav>
                             </Collapse>
                         </Navbar>
@@ -81,7 +107,12 @@ class HeaderKu extends Component{
                                         <NavLink>Hi , {this.props.bebas}</NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <Link to="/cart"><NavLink className="btn btn-default border-primary" style={{fontSize:"14px"}}><i class="fas fa-shopping-cart"></i> Cart:{this.state.cart.length} </NavLink></Link>
+                                        {
+                                            this.state.cart!==undefined?
+                                            <Link to="/cart"><NavLink className="btn btn-default border-primary" style={{fontSize:"14px"}}><i class="fas fa-shopping-cart"></i> Cart:{this.state.cart.length} </NavLink></Link>:
+                                            <Link to="/cart"><NavLink className="btn btn-default border-primary" style={{fontSize:"14px"}}><i class="fas fa-shopping-cart"></i> Cart:0 </NavLink></Link>
+                                        }
+                                        
                                     </NavItem>
                                     <UncontrolledDropdown nav inNavbar>
                                         <DropdownToggle nav caret>

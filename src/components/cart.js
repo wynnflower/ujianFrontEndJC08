@@ -4,8 +4,10 @@ import {connect} from 'react-redux'
 import { urlApi } from '../support/urlApi';
 import { countLength } from './../1.actions'
 import {deleteCart,emptyCart} from './../1.actions'
+import {Link} from 'react-router-dom'
 import swal from 'sweetalert'
 import cookie from 'universal-cookie'
+import PageNotFound from './pageNotFound'
 
 const objCookie = new cookie()
 class Cart extends React.Component{
@@ -116,6 +118,7 @@ class Cart extends React.Component{
         .catch((err)=>{
             console.log(err)
         })
+        this.setState({cart:this.state.cart})
         this.getDataApi()
         
     }
@@ -150,24 +153,53 @@ class Cart extends React.Component{
     
     renderCart=()=>{
         // alert('render Cart')
-        var jsx=this.state.cart.map((val)=>{
-            if (this.props.nama!==""){
-                return(
-                    <tr>
-                        <th style={{textAlign:'center'}}><img src={val.img} width="200" height="100"/></th>
-                        <td>{val.nama}</td>
-                        <td>{val.harga}</td>
-                        <td><button className="btn btn-primary" onClick={()=>{this.onSubtract(val)}}><i class="fas fa-minus"></i></button></td>
+        if(this.state.cart.length>0){
+            var jsx=this.state.cart.map((val)=>{
+                if (this.props.nama!==""){
+                    return(
+                        <tr>
+                            <th style={{textAlign:'center'}}><img src={val.img} width="200" height="100"/></th>
+                            <td>{val.nama}</td>
+                            <td>{val.harga}</td>
+                            <td><button className="btn btn-primary" onClick={()=>{this.onSubtract(val)}}><i class="fas fa-minus"></i></button></td>
+                                
+                                <td>{val.qty}</td>
+                                <td><button className="btn btn-primary" onClick={()=>{this.onAdd(val)}}><i class="fas fa-plus"></i></button></td>
+                                <td>{val.harga * val.qty}</td>
+                            <td><input type="button" className="btn btn-primary" value="Delete" onClick={()=>{this.onCartDelete(val.id)}}/></td>
+                        </tr>
+                    ) 
+                }
+                
+            })
+        } else {
+            return (
+                <Link to="/">
+                <div style={{textAlign:'center'}}>
+                    <input type="button" className="btn btn-success" value="Your Cart is Empty. Continue Shopping"></input>
+                </div>
+                </Link>
+                
+            )
+        }
+        // var jsx=this.state.cart.map((val)=>{
+        //     if (this.props.nama!==""){
+        //         return(
+        //             <tr>
+        //                 <th style={{textAlign:'center'}}><img src={val.img} width="200" height="100"/></th>
+        //                 <td>{val.nama}</td>
+        //                 <td>{val.harga}</td>
+        //                 <td><button className="btn btn-primary" onClick={()=>{this.onSubtract(val)}}><i class="fas fa-minus"></i></button></td>
                             
-                            <td>{val.qty}</td>
-                            <td><button className="btn btn-primary" onClick={()=>{this.onAdd(val)}}><i class="fas fa-plus"></i></button></td>
-                            <td>{val.harga * val.qty}</td>
-                        <td><input type="button" className="btn btn-primary" value="Delete" onClick={()=>{this.onCartDelete(val.id)}}/></td>
-                    </tr>
-                ) 
-            }
+        //                     <td>{val.qty}</td>
+        //                     <td><button className="btn btn-primary" onClick={()=>{this.onAdd(val)}}><i class="fas fa-plus"></i></button></td>
+        //                     <td>{val.harga * val.qty}</td>
+        //                 <td><input type="button" className="btn btn-primary" value="Delete" onClick={()=>{this.onCartDelete(val.id)}}/></td>
+        //             </tr>
+        //         ) 
+        //     }
             
-        })
+        // })
         return jsx
     }
     getTotal=()=>{
@@ -187,38 +219,61 @@ class Cart extends React.Component{
                 <div>
                         <table class="table">
                             <thead>
-                                <tr>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Produk</th>
-                                    <th scope="col">Harga</th>
-                                    <th></th>
-                                    <th scope="col">Qty</th>
-                                    <th></th>
-                                    <th scope="col">Total</th>
-                                    <th></th>
-                                </tr>
+                                {
+                                    this.state.cart.length>0?
+                                    <tr>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Produk</th>
+                                        <th scope="col">Harga</th>
+                                        <th></th>
+                                        <th scope="col">Qty</th>
+                                        <th></th>
+                                        <th scope="col">Total</th>
+                                        <th></th>
+                                    </tr>
+                                    :
+                                    null
+                                
+                                }
                             </thead>
                             <tbody>
                                 {this.renderCart()}
                             </tbody>
                             <tfoot>
-                                <tr>
-                                    <td colspan="6" style={{textAlign:'right',fontSize:'16px',fontWeight:'700'}}>Total Harga</td>
-                                    <td>{this.getTotal()}</td>
-                                    <td><button className="btn btn-primary" onClick={this.getDataHistory}>Checkout</button></td>
-                                </tr>
+                                {
+                                    this.state.cart.length>0?
+                                    <tr>
+                                        <td colspan="6" style={{textAlign:'right',fontSize:'16px',fontWeight:'700'}}>Total Harga</td>
+                                        <td>{this.getTotal()}</td>
+                                        <td><button className="btn btn-primary" onClick={this.getDataHistory}>Checkout</button>
+                                        
+                                        </td>
+                                    </tr>:null
+                                }
+                                
                             </tfoot>
                         </table>
-                        
+                        {
+                            this.state.cart.length>0?
+                            <Link to="/">
+                                        <div style={{textAlign:'center'}}>
+                                            <input type="button" className="btn btn-success" value="Continue Shopping"></input>
+                                        </div>
+                                        </Link>
+                                        :null
+                        }
                 </div>
             ) 
-        } 
+        } else {
+            return <PageNotFound/>
+        }
     }
 }
 const mapStateToProps =(state)=>{ 
     return {
         nama: state.user.username,
-        id:state.user.id
+        id:state.user.id,
+        role : state.user.role
         //cart:state.cart.cart
     }
 }

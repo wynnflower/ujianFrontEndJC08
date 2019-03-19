@@ -3,6 +3,7 @@ import Axios from 'axios'
 import {connect} from 'react-redux'
 import {Link,Redirect} from 'react-router-dom'
 import { urlApi } from '../support/urlApi';
+import PageNotFound from './pageNotFound';
 //import swal from 'sweetalert'
 
 class History extends React.Component{
@@ -62,7 +63,7 @@ class History extends React.Component{
                 </div>
             ) 
         } else{
-            return(<Redirect to="/login"/>)
+            return(<PageNotFound/>)
         }
         
     }
