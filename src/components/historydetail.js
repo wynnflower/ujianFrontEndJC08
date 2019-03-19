@@ -1,6 +1,7 @@
 import React from 'react'
 import Axios from 'axios'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import { urlApi } from '../support/urlApi';
 import swal from 'sweetalert'
 
@@ -72,6 +73,9 @@ class Cart extends React.Component{
                                 </tr>
                             </tfoot>
                         </table>
+                        <Link to="/history">
+                        <input type="button" className="btn btn-primary" value="Close"></input>
+                        </Link>
                         
                 </div>
             ) 

@@ -86,15 +86,15 @@ export const emptyCart=()=>{
     }
 }
 
-export const deleteCart = (id) => {
+export const deleteCart = (idcart,iduser) => {
     return(dispatch) => {
-        Axios.get(urlApi+'/cart?iduser=' + id)
+        Axios.get(urlApi+'/cart?iduser=' + iduser)//id user
         .then((res)=>{
-            Axios.delete(urlApi+'/cart/'+id)
+            Axios.delete(urlApi+'/cart/'+idcart)
             .then((res)=>{
                 console.log(res)
                 // this.setState({rows:res.data})
-                Axios.get(urlApi + '/cart?iduser=' +id)
+                Axios.get(urlApi + '/cart?iduser=' +iduser) // iduser
                 .then((res)=>{
                         swal({title: "Delete Cart!",
                             text: "Delete Cart Success",
@@ -104,6 +104,7 @@ export const deleteCart = (id) => {
                             type :"CART_SAVE",
                             payload : res.data
                         })
+                        
                 })
                 .catch((err)=>console.log(err))
                 

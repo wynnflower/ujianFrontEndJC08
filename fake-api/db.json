@@ -76,25 +76,7 @@
     {
       "iduser": 1,
       "tglbeli": "19/03/2019",
-      "jambeli": "11 : 13 : 53",
-      "item": [
-        {
-          "iduser": 1,
-          "nama": "Epic ComeBack",
-          "harga": 24000,
-          "img": "https://ecs7.tokopedia.net/img/product-1/2018/7/27/27345219/27345219_c9909d3f-8e63-4581-a242-63995611577d_1000_1000.jpg",
-          "qty": 1,
-          "id": 1
-        }
-      ],
-      "totalharga": 0,
-      "jmlitem": 1,
-      "id": 1
-    },
-    {
-      "iduser": 1,
-      "tglbeli": "19/03/2019",
-      "jambeli": "11 : 15 : 7",
+      "jambeli": "14 : 26 : 57",
       "item": [
         {
           "iduser": 1,
@@ -103,57 +85,36 @@
           "img": "https://www.jakartanotebook.com/images/products/99/63/19075/2/kaos-polos-katun-pria-o-neck-size-m-81402b-or-t-shirt-black-24.jpg",
           "qty": 2,
           "id": 1
-        }
-      ],
-      "totalharga": 0,
-      "jmlitem": 1,
-      "id": 2
-    },
-    {
-      "iduser": 1,
-      "tglbeli": "19/03/2019",
-      "jambeli": "11 : 21 : 21",
-      "item": [
-        {
-          "iduser": 1,
-          "nama": "Epic ComeBack",
-          "harga": 24000,
-          "img": "https://ecs7.tokopedia.net/img/product-1/2018/7/27/27345219/27345219_c9909d3f-8e63-4581-a242-63995611577d_1000_1000.jpg",
-          "qty": 2,
-          "id": 1
-        }
-      ],
-      "totalharga": 48000,
-      "jmlitem": 1,
-      "id": 3
-    },
-    {
-      "iduser": 1,
-      "tglbeli": "19/03/2019",
-      "jambeli": "12 : 38 : 58",
-      "item": [
+        },
         {
           "iduser": 1,
           "nama": "The Dark Knight",
           "harga": 40000,
           "img": "https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg",
           "qty": 1,
-          "id": 1
+          "id": 2
+        },
+        {
+          "nama": "Epic ComeBack",
+          "iduser": 1,
+          "harga": 24000,
+          "qty": 3,
+          "img": "https://ecs7.tokopedia.net/img/product-1/2018/7/27/27345219/27345219_c9909d3f-8e63-4581-a242-63995611577d_1000_1000.jpg",
+          "id": 3
+        },
+        {
+          "iduser": 1,
+          "nama": "Welcome",
+          "harga": 20000,
+          "img": "http://sokwear.com/82-large_default/welcome-to-state-of-kaos.jpg",
+          "qty": 1,
+          "id": 4
         }
       ],
-      "totalharga": 40000,
-      "jmlitem": 1,
-      "id": 4
-    }
-  ],
-  "cart": [
-    {
-      "iduser": 1,
-      "nama": "The Dark Knight",
-      "harga": 40000,
-      "img": "https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg",
-      "qty": 2,
+      "totalharga": 168000,
+      "jmlitem": 4,
       "id": 1
     }
-  ]
+  ],
+  "cart": []
 }

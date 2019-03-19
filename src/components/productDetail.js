@@ -117,7 +117,7 @@ class ProductDetail extends React.Component{
                                         color:'#606060',
                                         fontWeight:'700',
                                         fontSize:'14px'}}>Jumlah</div>
-                                <input type='number' onChange={this.qtyValidation} ref='inputQty' min={1} className='form-control' style={{width : '60px',
+                                <input type='number' disabled onChange={this.qtyValidation} ref='inputQty' min={1} defaultValue={1} className='form-control' style={{width : '60px',
                                                                                               marginTop:'10px'}} />
                             </div>
                             <div className='col-md-6'>

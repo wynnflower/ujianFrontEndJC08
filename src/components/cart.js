@@ -112,13 +112,13 @@ class Cart extends React.Component{
         // })
         Axios.get(urlApi+'/cart/'+id)
         .then((res)=>{
-            this.props.deleteCart(id)
+            this.props.deleteCart(id,this.props.id)
             
         })
         .catch((err)=>{
             console.log(err)
         })
-        this.setState({cart:this.state.cart})
+        //this.setState({cart:[]})
         this.getDataApi()
         
     }
@@ -158,6 +158,7 @@ class Cart extends React.Component{
                 if (this.props.nama!==""){
                     return(
                         <tr>
+                            <td>{val.id}</td>
                             <th style={{textAlign:'center'}}><img src={val.img} width="200" height="100"/></th>
                             <td>{val.nama}</td>
                             <td>{val.harga}</td>
@@ -222,6 +223,7 @@ class Cart extends React.Component{
                                 {
                                     this.state.cart.length>0?
                                     <tr>
+                                        <th scope="col">ID</th>
                                         <th scope="col">Image</th>
                                         <th scope="col">Produk</th>
                                         <th scope="col">Harga</th>
